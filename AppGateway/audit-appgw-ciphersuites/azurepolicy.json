@@ -1,0 +1,43 @@
+{
+    "properties": {
+      "displayName": "Audit Application Gateway Cipher Suites",
+      "mode": "All",
+      "description": "This policy audits that an application gateway is set to only use cipher suites found in the suppplied list",
+      "parameters": {
+        "allowedCipherSuites": {
+          "type": "Array",
+          "metadata": {
+            "description": "The list of allowed cipher suites.",
+            "displayName": "Allowed cipher suites"
+          }
+        }
+      },
+      "policyRule": {
+        "if": {
+          "allOf": [
+            {
+              "field": "type",
+              "equals": "Microsoft.Network/applicationGateways"
+            },
+            {
+              "anyOf": [
+                {
+                  "field": "Microsoft.Network/applicationGateways/sslPolicy.policyType",
+                  "notEquals": "Custom"
+                },
+                {
+                  "not": {
+                    "field": "Microsoft.Network/applicationGateways/sslPolicy.cipherSuites[*]",
+                    "in": "[parameters('allowedCipherSuites')]"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "then": {
+          "effect": "Audit"
+        }
+      }
+    }
+  }

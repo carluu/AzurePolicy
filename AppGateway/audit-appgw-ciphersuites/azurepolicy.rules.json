@@ -1,0 +1,27 @@
+{
+    "if": {
+        "allOf": [
+            {
+                "field": "type",
+                "equals": "Microsoft.Network/applicationGateways"
+            },
+            {
+                "anyOf": [
+                    {
+                        "field": "Microsoft.Network/applicationGateways/sslPolicy.policyType",
+                        "notEquals": "Custom"
+                    },
+                    {
+                        "not": {
+                            "field": "Microsoft.Network/applicationGateways/sslPolicy.cipherSuites[*]",
+                            "in": "[parameters('allowedCipherSuites')]"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "then": {
+        "effect": "Audit"
+    }
+}

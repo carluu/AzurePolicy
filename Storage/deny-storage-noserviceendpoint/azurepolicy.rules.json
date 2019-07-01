@@ -1,0 +1,29 @@
+{
+    "if": {
+        "allOf": [
+            {
+                "field": "type",
+                "equals": "Microsoft.Storage/storageAccounts"
+            },
+            {
+                "anyOf": [
+                    {
+                        "field": "Microsoft.Storage/storageAccounts/networkAcls.virtualNetworkRules[*].id",
+                        "exists": "false"
+                    },
+                    {
+                        "field": "Microsoft.Storage/storageAccounts/networkAcls.virtualNetworkRules[*].id",
+                        "notLike": "*"
+                    },
+                    {
+                        "field": "Microsoft.Storage/storageAccounts/networkAcls.defaultAction",
+                        "equals": "Allow"
+                    }
+                ]
+            }
+        ]
+    },
+    "then": {
+        "effect": "deny"
+    }
+}

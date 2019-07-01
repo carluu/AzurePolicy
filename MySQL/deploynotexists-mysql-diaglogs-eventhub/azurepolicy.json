@@ -1,0 +1,107 @@
+{
+  "properties": {
+    "displayName": "Deploy MySQL Diagnostic Settings with Event Hub",
+    "mode": "All",
+    "description": "This policy will deploy MySQL diagnostic settings where the resource does not have them enabled and pointing to the specified event hub",
+    "parameters": {
+      "eventHubAuthorizationRuleId": {
+        "type": "String",
+        "metadata": {
+          "description": "Resource ID of event hub authorization rule",
+          "displayName": "Event Hub Authorization Rule ID"
+        }
+      }
+    },
+    "policyRule": {
+      "if": {
+        "field": "type",
+        "equals": "Microsoft.DBforMySQL/servers"
+      },
+      "then": {
+        "effect": "DeployIfNotExists",
+        "details": {
+          "type": "Microsoft.Insights/diagnosticSettings",
+          "roleDefinitionIds": [
+            "/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+          ],
+          "existenceCondition": {
+            "allOf": [
+              {
+                "field": "Microsoft.Insights/diagnosticSettings/eventHubAuthorizationRuleId",
+                "equals": "[parameters('eventHubAuthorizationRuleId')]"
+              },
+              {
+                "field": "Microsoft.Insights/diagnosticSettings/logs.enabled",
+                "equals": "true"
+              }
+            ]
+          },
+          "deployment": {
+            "properties": {
+              "mode": "incremental",
+              "template": {
+                "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+                "contentVersion": "1.0.0.0",
+                "parameters": {
+                  "eventHubAuthorizationRuleId": {
+                    "type": "string"
+                  },
+                  "mysqlServerName": {
+                    "type": "string"
+                  }
+                },
+                "resources": [
+                  {
+                    "type": "Microsoft.DBforMySQL/servers/providers/diagnosticSettings",
+                    "name": "[concat(parameters('mysqlServerName'),'/Microsoft.Insights/MySQLDiagSettings')]",
+                    "apiVersion": "2017-05-01-preview",
+                    "properties": {
+                      "name": "MySQLDiagSettings",
+                      "eventHubAuthorizationRuleId": "[parameters('eventHubAuthorizationRuleId')]",
+                      "logs": [
+                        {
+                          "category": "MySqlSlowLogs",
+                          "enabled": true,
+                          "retentionPolicy": {
+                            "days": 0,
+                            "enabled": false
+                          }
+                        },
+                        {
+                          "category": "MySqlAuditLogs",
+                          "enabled": true,
+                          "retentionPolicy": {
+                            "days": 0,
+                            "enabled": false
+                          }
+                        }
+                      ],
+                      "metrics": [
+                        {
+                          "category": "AllMetrics",
+                          "enabled": true,
+                          "retentionPolicy": {
+                            "enabled": false,
+                            "days": 0
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "parameters": {
+                "eventHubAuthorizationRuleId": {
+                  "value": "[parameters('eventHubAuthorizationRuleId')]"
+                },
+                "mysqlServerName": {
+                  "value": "[field('name')]"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

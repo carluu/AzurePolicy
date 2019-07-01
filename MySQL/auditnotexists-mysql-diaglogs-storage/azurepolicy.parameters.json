@@ -1,0 +1,9 @@
+{
+	"storageAccountId": {
+		"type": "string",
+		"metadata": {
+			"description": "The ID of the storage account to send the logs to",
+			"displayName": "Storage Account ID"
+		}
+	}
+}

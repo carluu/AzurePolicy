@@ -1,0 +1,107 @@
+{
+  "properties": {
+    "displayName": "Deploy MySQL Diagnostic Settings with Storage Account",
+    "mode": "All",
+    "description": "This policy will deploy MySQL diagnostic settings where the resource does not have them enabled and pointing to the specified storage account",
+    "parameters": {
+      "storageAccountId": {
+        "type": "String",
+        "metadata": {
+          "description": "The ID of the storage account to send the logs to",
+          "displayName": "Storage Account ID"
+        }
+      }
+    },
+    "policyRule": {
+      "if": {
+        "field": "type",
+        "equals": "Microsoft.DBforMySQL/servers"
+      },
+      "then": {
+        "effect": "DeployIfNotExists",
+        "details": {
+          "type": "Microsoft.Insights/diagnosticSettings",
+          "roleDefinitionIds": [
+            "/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+          ],
+          "existenceCondition": {
+            "allOf": [
+              {
+                "field": "Microsoft.Insights/diagnosticSettings/storageAccountId",
+                "equals": "[parameters('storageAccountId')]"
+              },
+              {
+                "field": "Microsoft.Insights/diagnosticSettings/logs.enabled",
+                "equals": "true"
+              }
+            ]
+          },
+          "deployment": {
+            "properties": {
+              "mode": "incremental",
+              "template": {
+                "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+                "contentVersion": "1.0.0.0",
+                "parameters": {
+                  "storageAccountId": {
+                    "type": "string"
+                  },
+                  "mysqlServerName": {
+                    "type": "string"
+                  }
+                },
+                "resources": [
+                  {
+                    "type": "Microsoft.DBforMySQL/servers/providers/diagnosticSettings",
+                    "name": "[concat(parameters('mysqlServerName'),'/Microsoft.Insights/MySQLDiagSettings')]",
+                    "apiVersion": "2017-05-01-preview",
+                    "properties": {
+                      "name": "MySQLDiagSettings",
+                      "storageAccountId": "[parameters('storageAccountId')]",
+                      "logs": [
+                        {
+                          "category": "MySqlSlowLogs",
+                          "enabled": true,
+                          "retentionPolicy": {
+                            "days": 0,
+                            "enabled": false
+                          }
+                        },
+                        {
+                          "category": "MySqlAuditLogs",
+                          "enabled": true,
+                          "retentionPolicy": {
+                            "days": 0,
+                            "enabled": false
+                          }
+                        }
+                      ],
+                      "metrics": [
+                        {
+                          "category": "AllMetrics",
+                          "enabled": true,
+                          "retentionPolicy": {
+                            "enabled": false,
+                            "days": 0
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "parameters": {
+                "storageAccountId": {
+                  "value": "[parameters('storageAccountId')]"
+                },
+                "mysqlServerName": {
+                  "value": "[field('name')]"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "if": {
+      "field": "type",
+      "equals": "Microsoft.DBforMySQL/servers"
+  },
+  "then": {
+      "effect": "AuditIfNotExists",
+      "details": {
+          "type": "Microsoft.Insights/diagnosticSettings",
+          "existenceCondition": {
+              "allOf": [
+                  {
+                      "field": "Microsoft.Insights/diagnosticSettings/storageAccountId",
+                      "equals": "[parameters('storageAccountId')]"
+                  },
+                  {
+                      "field": "Microsoft.Insights/diagnosticSettings/logs.enabled",
+                      "equals": "true"
+                  }
+              ]
+          }
+      }
+  }
+}

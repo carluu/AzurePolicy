@@ -1,0 +1,21 @@
+{
+    "if": {
+        "allOf": [
+            {
+                "field": "type",
+                "equals": "Microsoft.DBforMySQL/servers"
+            },
+            {
+                "anyOf": [
+                    {
+                        "field": "Microsoft.DBforMySQL/servers/virtualNetworkRules/state",
+                        "exists": "False"
+                    }
+                ]
+            }
+        ]
+    },
+    "then": {
+        "effect": "audit"
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "allowedCipherSuites": {
+        "type": "array",
+        "metadata": {
+            "description": "The list of allowed cipher suites.",
+            "displayName": "Allowed cipher suites"
+        }
+    }
+}

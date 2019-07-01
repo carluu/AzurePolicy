@@ -1,0 +1,10 @@
+{
+	"workspaceId": {
+		"type": "string",
+		"metadata": {
+			"description": "The ID of the workspace to send the logs to",
+			"displayName": "Workspace ID",
+			"strongType": "omsWorkspace"
+		}
+	}
+}

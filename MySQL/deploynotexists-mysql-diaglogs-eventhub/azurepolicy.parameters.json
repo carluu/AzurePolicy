@@ -1,0 +1,9 @@
+{
+	"eventHubAuthorizationRuleId": {
+		"type": "string",
+		"metadata": {
+			"description": "Resource ID of event hub authorization rule",
+			"displayName": "Event Hub Authorization Rule ID"
+		}
+	}
+}

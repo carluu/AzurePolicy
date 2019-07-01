@@ -1,0 +1,40 @@
+{
+    "properties": {
+      "displayName": "Audit MySQL Diagnostic Settings with Workspace",
+      "mode": "All",
+      "description": "This policy audits that diagnostic settings have been enabled on a MySQL server and are being directed to a specific workspace",
+      "parameters": {
+        "workspaceId": {
+          "type": "String",
+          "metadata": {
+            "description": "The ID of the workspace to send the logs to",
+            "displayName": "Workspace ID"
+          }
+        }
+      },
+      "policyRule": {
+        "if": {
+          "field": "type",
+          "equals": "Microsoft.DBforMySQL/servers"
+        },
+        "then": {
+          "effect": "AuditIfNotExists",
+          "details": {
+            "type": "Microsoft.Insights/diagnosticSettings",
+            "existenceCondition": {
+              "allOf": [
+                {
+                  "field": "Microsoft.Insights/diagnosticSettings/workspaceId",
+                  "equals": "[parameters('workspaceId')]"
+                },
+                {
+                  "field": "Microsoft.Insights/diagnosticSettings/logs.enabled",
+                  "equals": "true"
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  }

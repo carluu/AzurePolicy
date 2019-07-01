@@ -1,0 +1,5 @@
+{
+    "allowedCipherSuites": {
+        "value": ["cipher1","cipher2"]
+    }
+}
