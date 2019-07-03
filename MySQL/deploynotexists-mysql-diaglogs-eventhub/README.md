@@ -1,6 +1,8 @@
 # Deploy MySQL diagnostic settings if not enabled and pointing to the correct event hub
 
-This policy will deploy MySQL diagnostic settings where the resource does not have them enabled and pointing to the specified event hub
+This policy will deploy MySQL diagnostic settings where the resource does not have them enabled and pointing to the specified event hub.  
+
+It will deploy all available log types (MySqlSlowLogs,MySqlAuditLogs) as well as AllMetrics
 
 ## Try with Azure portal
 
