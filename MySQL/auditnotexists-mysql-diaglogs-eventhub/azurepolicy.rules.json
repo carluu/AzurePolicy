@@ -1,24 +1,24 @@
 {
-  "if": {
-      "field": "type",
-      "equals": "Microsoft.DBforMySQL/servers"
-  },
-  "then": {
-      "effect": "AuditIfNotExists",
-      "details": {
-          "type": "Microsoft.Insights/diagnosticSettings",
-          "existenceCondition": {
-              "allOf": [
-                  {
-                      "field": "Microsoft.Insights/diagnosticSettings/eventHubAuthorizationRuleId",
-                      "equals": "[parameters('eventHubAuthorizationRuleId')]"
-                  },
-                  {
-                      "field": "Microsoft.Insights/diagnosticSettings/logs.enabled",
-                      "equals": "true"
-                  }
-              ]
-          }
-      }
+    "if": {
+        "field": "type",
+        "equals": "Microsoft.DBforMySQL/servers"
+    },
+    "then": {
+        "effect": "AuditIfNotExists",
+        "details": {
+            "type": "Microsoft.Insights/diagnosticSettings",
+            "existenceCondition": {
+                "allOf": [
+                    {
+                        "field": "Microsoft.Insights/diagnosticSettings/eventHubAuthorizationRuleId",
+                        "equals": "[parameters('eventHubAuthorizationRuleId')]"
+                    },
+                    {
+                        "field": "Microsoft.Insights/diagnosticSettings/logs.enabled",
+                        "equals": "true"
+                    }
+                ]
+            }
+        }
+    }
   }
-}

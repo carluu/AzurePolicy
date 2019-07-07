@@ -1,0 +1,23 @@
+{
+    "eventHubAuthorizationRuleId": {
+        "type": "string",
+        "metadata": {
+            "description": "Resource ID of event hub authorization rule",
+            "displayName": "Event Hub Authorization Rule ID"
+        }
+    },
+    "logTypes": {
+        "type": "array",
+        "metadata": {
+            "description": "The list of log types that should be enabled",
+            "displayName": "Enabled logs"
+        }
+    },
+    "metricTypes": {
+        "type": "array",
+        "metadata": {
+            "description": "The list of metrics that should be enabled",
+            "displayName": "Enabled metrics"
+        }
+    }
+}

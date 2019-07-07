@@ -1,0 +1,11 @@
+{
+    "eventHubAuthorizationRuleId": {
+        "value": "eventHubAuthorizationRuleId"
+    },
+    "logTypes": {
+        "value": ["LogType1","LogType2"]
+    },
+    "metricTypes": {
+        "value": ["MetricType1","MetricType2"]
+    }
+}
