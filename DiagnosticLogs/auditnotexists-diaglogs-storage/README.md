@@ -24,10 +24,10 @@ $assignment = New-AzPolicyAssignment -Name 'auditnotexists-diaglogs-storage-assi
 
 ```cli
 # Create the Policy Definition (Subscription scope)
-az policy definition create --name "auditnotexists-mysql-diaglogs-storage" --display-name "Audit MySQL Diagnostic Settings with Storage" --description "This policy audits that diagnostic settings have been enabled on a MySQL server and are being directed to a specific storage account" --rules "https://raw.githubusercontent.com/carluu/AzurePolicy/master/MySQL/auditnotexists-mysql-diaglogs-storage/azurepolicy.rules.json" --params "https://raw.githubusercontent.com/carluu/AzurePolicy/master/MySQL/auditnotexists-mysql-diaglogs-storage/azurepolicy.parameters.json" --mode All
+az policy definition create --name "auditnotexists-diaglogs-storage" --display-name "Audit Resource Diagnostic Settings with Storage" --description "This policy audits that diagnostic settings have been enabled on on all resource types passed in and are being directed to a specific storage account" --rules "https://raw.githubusercontent.com/carluu/AzurePolicy/master/DiagnosticLogs/auditnotexists-diaglogs-storage/azurepolicy.rules.json" --params "https://raw.githubusercontent.com/carluu/AzurePolicy/master/DiagnosticLogs/auditnotexists-diaglogs-storage/azurepolicy.parameters.json" --mode All
 
 # Create the Policy Assignment
-az policy assignment create --name "auditnotexists-mysql-diaglogs-storage-assignment" --display-name "Audit MySQL Diagnostic Settings with Storage Assignment" --scope <scope> --policy auditnotexists-mysql-diaglogs-storage --params @.\parametervalues.json
+az policy assignment create --name "auditnotexists-diaglogs-storage-assignment" --display-name "Audit Resource Diagnostic Settings with Storage Assignment" --scope <scope> --policy auditnotexists-diaglogs-storage --params @.\parametervalues.json
 ```
 
 ## Deployment Notes
