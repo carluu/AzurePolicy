@@ -11,7 +11,7 @@ This policy audits that diagnostic settings have been enabled on all resource ty
 
 ````powershell
 # Create the Policy Definition (Subscription scope)
-$definition = New-AzPolicyDefinition -Name 'auditnotexists-diaglogs-eventhub' -DisplayName 'Audit Resource Diagnostic Settings to specific Event Hub' -description 'This policy audits that diagnostic settings have been enabled on all resource types passed in and are sending to a specified event hub' -Policy 'https://raw.githubusercontent.com/carluu/AzurePolicy/master/DiagnosticLogs/auditnotexists-diaglogs-eventhub/azurepolicy.rules.json' -Parameter 'https://raw.githubusercontent.com/carluu/AzurePolicy/master/DiagnosticLogs/auditnotexists-diaglogs-eventhub/azurepolicy.parameters.json' -Mode All
+$definition = New-AzPolicyDefinition -Name 'auditnotexists-diaglogs-eventhub' -DisplayName 'Audit Resource Diagnostic Settings with Event Hub' -description 'This policy audits that diagnostic settings have been enabled on all resource types passed in and are sending to a specified event hub' -Policy 'https://raw.githubusercontent.com/carluu/AzurePolicy/master/DiagnosticLogs/auditnotexists-diaglogs-eventhub/azurepolicy.rules.json' -Parameter 'https://raw.githubusercontent.com/carluu/AzurePolicy/master/DiagnosticLogs/auditnotexists-diaglogs-eventhub/azurepolicy.parameters.json' -Mode All
 
 # Set the scope to a resource group; may also be a subscription or management group
 $scope = Get-AzResourceGroup -Name 'YourResourceGroup'
@@ -24,7 +24,7 @@ $assignment = New-AzPolicyAssignment -Name 'auditnotexists-diaglogs-eventhub-ass
 
 ```cli
 # Create the Policy Definition (Subscription scope)
-az policy definition create --name "auditnotexists-diaglogs-eventhub" --display-name "Audit Resource Diagnostic Settings to specific Event Hub" --description "This policy audits that diagnostic settings have been enabled on all resource types passed in and are sending to a specified event hub" --rules "https://raw.githubusercontent.com/carluu/AzurePolicy/master/DiagnosticLogs/auditnotexists-diaglogs-eventhub/azurepolicy.rules.json" --params "https://raw.githubusercontent.com/carluu/AzurePolicy/master/DiagnosticLogs/auditnotexists-diaglogs-eventhub/azurepolicy.parameters.json" --mode All
+az policy definition create --name "auditnotexists-diaglogs-eventhub" --display-name "Audit Resource Diagnostic Settings with Event Hub" --description "This policy audits that diagnostic settings have been enabled on all resource types passed in and are sending to a specified event hub" --rules "https://raw.githubusercontent.com/carluu/AzurePolicy/master/DiagnosticLogs/auditnotexists-diaglogs-eventhub/azurepolicy.rules.json" --params "https://raw.githubusercontent.com/carluu/AzurePolicy/master/DiagnosticLogs/auditnotexists-diaglogs-eventhub/azurepolicy.parameters.json" --mode All
 
 # Create the Policy Assignment
 az policy assignment create --name "auditnotexists-diaglogs-eventhub-assignment" --display-name "Audit Resource Diagnostic Settings to specific Event Hub Assignment" --scope <scope> --policy auditnotexists-diaglogs-eventhub --params @.\parametervalues.json
