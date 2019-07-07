@@ -1,0 +1,24 @@
+{
+    "if": {
+        "field": "type",
+        "in": "[parameters('resourceTypes')]"
+    },
+    "then": {
+        "effect": "AuditIfNotExists",
+        "details": {
+            "type": "Microsoft.Insights/diagnosticSettings",
+            "existenceCondition": {
+                "allOf": [
+                    {
+                        "field": "Microsoft.Insights/diagnosticSettings/eventHubAuthorizationRuleId",
+                        "equals": "[parameters('eventHubAuthorizationRuleId')]"
+                    },
+                    {
+                        "field": "Microsoft.Insights/diagnosticSettings/logs.enabled",
+                        "equals": "true"
+                    }
+                ]
+            }
+        }
+    }
+  }

@@ -1,0 +1,40 @@
+{
+  "properties": {
+    "displayName": "Audit MySQL Diagnostic Settings with Event Hub",
+    "mode": "All",
+    "description": "This policy audits that diagnostic settings have been enabled on a MySQL server and are being directed to a specific event hub",
+    "parameters": {
+      "eventHubAuthorizationRuleId": {
+        "type": "String",
+        "metadata": {
+          "description": "Resource ID of event hub authorization rule",
+          "displayName": "Event Hub Authorization Rule ID"
+        }
+      }
+    },
+    "policyRule": {
+      "if": {
+        "field": "type",
+        "equals": "Microsoft.DBforMySQL/servers"
+      },
+      "then": {
+        "effect": "AuditIfNotExists",
+        "details": {
+          "type": "Microsoft.Insights/diagnosticSettings",
+          "existenceCondition": {
+            "allOf": [
+              {
+                "field": "Microsoft.Insights/diagnosticSettings/eventHubAuthorizationRuleId",
+                "equals": "[parameters('eventHubAuthorizationRuleId')]"
+              },
+              {
+                "field": "Microsoft.Insights/diagnosticSettings/logs.enabled",
+                "equals": "true"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

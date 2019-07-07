@@ -1,0 +1,18 @@
+
+{
+	"eventHubAuthorizationRuleId": {
+		"type": "string",
+		"metadata": {
+			"description": "Resource ID of event hub authorization rule",
+			"displayName": "Event Hub Authorization Rule ID"
+		}
+	},
+	"resourceTypes": {
+        "type": "array",
+        "metadata": {
+            "description": "The list of resource types that should be assessed",
+			"displayName": "Resource Types",
+			"strongType": "resourceTypes"
+        }
+    }
+}
