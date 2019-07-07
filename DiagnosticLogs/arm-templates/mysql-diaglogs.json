@@ -1,0 +1,45 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {},
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.DBforMySQL/servers/providers/diagnosticSettings",
+            "name": "test/Microsoft.Insights/MySQLDiagSettings",
+            "apiVersion": "2017-05-01-preview",
+            "properties": {
+                "name": "MySQLDiagSettings",
+                "storageAccountId": "test",
+                "logs": [
+                    {
+                        "category": "MySqlSlowLogs",
+                        "enabled": true,
+                        "retentionPolicy": {
+                            "days": 0,
+                            "enabled": false
+                        }
+                    },
+                    {
+                        "category": "MySqlAuditLogs",
+                        "enabled": true,
+                        "retentionPolicy": {
+                            "days": 0,
+                            "enabled": false
+                        }
+                    }                                        
+                ],
+                "metrics": [
+                    {
+                        "category": "AllMetrics",
+                        "enabled": true,
+                        "retentionPolicy": {
+                            "enabled": false,
+                            "days": 0
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
