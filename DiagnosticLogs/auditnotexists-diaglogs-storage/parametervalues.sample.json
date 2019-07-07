@@ -1,0 +1,8 @@
+{
+    "storageAccountId": {
+        "value": "storageAccountId"
+    },
+    "resourceTypes": {
+        "value": ["Microsoft.Provider1/type1","Microsoft.Provider1/type2"]
+    }
+}
