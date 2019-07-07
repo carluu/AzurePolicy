@@ -1,0 +1,8 @@
+{
+    "workspaceId": {
+        "value": "workspaceid"
+    },
+    "resourceTypes": {
+        "value": ["Microsoft.Provider1/type1","Microsoft.Provider1/type2"]
+    }
+}
