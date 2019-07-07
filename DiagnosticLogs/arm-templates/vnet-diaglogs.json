@@ -5,12 +5,12 @@
     "variables": {},
     "resources": [
         {
-            "type": "Microsoft.DBforMySQL/servers/providers/diagnosticSettings",
-            "name": "policytest/Microsoft.Insights/MySQLDiagSettings",
+            "type": "Microsoft.Network/virtualNetworks/providers/diagnosticSettings",
+            "name": "test/Microsoft.Insights/DiagSettings",
             "apiVersion": "2017-05-01-preview",
             "properties": {
                 "name": "MySQLDiagSettings",
-                "storageAccountId": "/subscriptions/8d4251aa-41f1-485c-97e9-460259f227b6/resourceGroups/BoxOfSand/providers/Microsoft.Storage/storageAccounts/cuupolicyaudit",
+                "storageAccountId": "test",
                 "logs": [
                     {
                         "category": "MySqlSlowLogs",
