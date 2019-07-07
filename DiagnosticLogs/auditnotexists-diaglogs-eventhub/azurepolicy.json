@@ -1,8 +1,8 @@
 {
   "properties": {
-    "displayName": "Audit MySQL Diagnostic Settings with Event Hub",
+    "displayName": "Audit Resource Diagnostic Settings to specific Event Hub",
     "mode": "All",
-    "description": "This policy audits that diagnostic settings have been enabled on a MySQL server and are being directed to a specific event hub",
+    "description": "This policy audits that diagnostic settings have been enabled on all resource types passed in and are sending to a specified event hub",
     "parameters": {
       "eventHubAuthorizationRuleId": {
         "type": "String",
@@ -10,12 +10,20 @@
           "description": "Resource ID of event hub authorization rule",
           "displayName": "Event Hub Authorization Rule ID"
         }
+      },
+      "resourceTypes": {
+        "type": "Array",
+        "metadata": {
+          "description": "The list of resource types that should be assessed",
+          "displayName": "Resource Types",
+          "strongType": "resourceTypes"
+        }
       }
     },
     "policyRule": {
       "if": {
         "field": "type",
-        "equals": "Microsoft.DBforMySQL/servers"
+        "in": "[parameters('resourceTypes')]"
       },
       "then": {
         "effect": "AuditIfNotExists",
