@@ -6,7 +6,7 @@
             "type": "string",
             "defaultValue": ""
         },
-        "storageId": {
+        "storageAccountId": {
             "type": "string",
             "defaultValue": ""
         },
@@ -26,7 +26,7 @@
             "apiVersion": "2017-05-01-preview",
             "properties": {
                 "name": "MySQLDiagSettings",
-                "storageAccountId": "[if(empty(parameters('storageId')), json('null'), parameters('storageId'))]",
+                "storageAccountId": "[if(empty(parameters('storageAccountId')), json('null'), parameters('storageAccountId'))]",
                 "eventHubAuthorizationRuleId": "[if(empty(parameters('eventHubAuthorizationRuleId')), json('null'), parameters('eventHubAuthorizationRuleId'))]",
                 "workspaceId": "[if(empty(parameters('workspaceId')), json('null'), parameters('workspaceId'))]",
                 "logs": [
