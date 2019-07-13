@@ -1,8 +1,20 @@
-# Deploy MySQL diagnostic settings if not enabled and pointing to the correct event hub
+# Deploy diagnostic settings to all resource types specified
 
-This policy will deploy MySQL diagnostic settings where the resource does not have them enabled and pointing to the specified event hub.  
-
-It will deploy all available log types (MySqlSlowLogs,MySqlAuditLogs) as well as AllMetrics
+This policy is used to deploy diagnostic settings where specified.  
+  
+The policy takes in the following arguments for log destinations:  
+- Event Hub ID: The event hub to send logs to
+- Storage Account ID: The storage account to send logs to
+- Workspace ID: The log analytics workspace to send logs to  
+  
+Note that for the above, all are optional (however if you deploy with none set, deployment will fail). When deploying, the state will try to match exactly the state specified, so if you previously had, for example, Storage and Event Hub set and deploy with Storage and Workspace, Event Hub will be unset and the final state will be just Storage and Workspace  
+  
+The policy also takes:  
+- Resource Types: This is an array of the resource types you want to deploy diagnostic settings to
+- Template source: This is the base URL (trailing slash not included) pointing to the deployment templates (see below for more information)  
+  
+## Deployment Templates  
+Since ARM does not allow dyanmic specification of Type in a deployment, to achieve the goal of this policy, linked templates were required. For every resource assessed, if the policy needs to trigger a deployment, it will invoked a deployment using a linked template based on the resource type of the resource being assessed. For example, if the resource type is a MySQL database, the policy will translate the resource type from 'Microsoft.DBforMySQL/servers' to 'Microsoft.DBForMySQL-servers' (replacing '/' with '-')  look for a linked template at: <templateSource>/<convertedResourceType>.json. This means that for every resource type, there needs to be an associated deployment template. See the arm-templates folder under DiagnosticLogs for examples.
 
 ## Try with Azure portal
 

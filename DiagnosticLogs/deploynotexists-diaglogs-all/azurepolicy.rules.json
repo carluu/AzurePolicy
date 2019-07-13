@@ -71,7 +71,7 @@
                                 "properties": {
                                     "mode": "incremental",
                                     "templateLink": {
-                                        "uri": "[concat(parameters('templateSource'),replace(parameters('resourceType'), '/', '-'),'.json')]",
+                                        "uri": "[concat(parameters('templateSource'),'/',replace(parameters('resourceType'), '/', '-'),'.json')]",
                                         "contentVersion": "1.0.0.0"
                                     },
                                     "parameters": {
