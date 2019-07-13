@@ -1,21 +1,54 @@
 {
   "properties": {
-    "displayName": "Deploy MySQL Diagnostic Settings with Event Hub",
+    "displayName": "Deploy diagnostic settings to all resource types specified",
     "mode": "All",
-    "description": "This policy will deploy MySQL diagnostic settings where the resource does not have them enabled and pointing to the specified event hub",
+    "description": "This policy is used to deploy diagnostic settings where specified",
     "parameters": {
       "eventHubAuthorizationRuleId": {
         "type": "String",
         "metadata": {
           "description": "Resource ID of event hub authorization rule",
           "displayName": "Event Hub Authorization Rule ID"
+        },
+        "defaultValue": ""
+      },
+      "storageAccountId": {
+        "type": "String",
+        "metadata": {
+          "description": "The ID of the storage account to send the logs to",
+          "displayName": "Storage Account ID"
+        },
+        "defaultValue": ""
+      },
+      "workspaceId": {
+        "type": "String",
+        "metadata": {
+          "description": "The ID of the workspace to send the logs to",
+          "displayName": "Workspace ID",
+          "strongType": "omsWorkspace"
+        },
+        "defaultValue": ""
+      },
+      "resourceTypes": {
+        "type": "Array",
+        "metadata": {
+          "description": "The list of resource types that should be assessed",
+          "displayName": "Resource Types",
+          "strongType": "resourceTypes"
+        }
+      },
+      "templateSource": {
+        "type": "String",
+        "metadata": {
+          "description": "The base url for the linked templates",
+          "displayName": "Template Source URL"
         }
       }
     },
     "policyRule": {
       "if": {
         "field": "type",
-        "equals": "Microsoft.DBforMySQL/servers"
+        "in": "[parameters('resourceTypes')]"
       },
       "then": {
         "effect": "DeployIfNotExists",
@@ -31,7 +64,19 @@
                 "equals": "[parameters('eventHubAuthorizationRuleId')]"
               },
               {
+                "field": "Microsoft.Insights/diagnosticSettings/storageAccountId",
+                "equals": "[parameters('storageAccountId')]"
+              },
+              {
+                "field": "Microsoft.Insights/diagnosticSettings/workspaceId",
+                "equals": "[parameters('workspaceId')]"
+              },
+              {
                 "field": "Microsoft.Insights/diagnosticSettings/logs.enabled",
+                "equals": "true"
+              },
+              {
+                "field": "Microsoft.Insights/diagnosticSettings/metrics.enabled",
                 "equals": "true"
               }
             ]
@@ -44,48 +89,52 @@
                 "contentVersion": "1.0.0.0",
                 "parameters": {
                   "eventHubAuthorizationRuleId": {
+                    "type": "string",
+                    "defaultValue": ""
+                  },
+                  "storageAccountId": {
+                    "type": "string",
+                    "defaultValue": ""
+                  },
+                  "workspaceId": {
+                    "type": "string",
+                    "defaultValue": ""
+                  },
+                  "resourceName": {
                     "type": "string"
                   },
-                  "mysqlServerName": {
+                  "resourceType": {
+                    "type": "string"
+                  },
+                  "templateSource": {
                     "type": "string"
                   }
                 },
                 "resources": [
                   {
-                    "type": "Microsoft.DBforMySQL/servers/providers/diagnosticSettings",
-                    "name": "[concat(parameters('mysqlServerName'),'/Microsoft.Insights/MySQLDiagSettings')]",
-                    "apiVersion": "2017-05-01-preview",
+                    "apiVersion": "2017-05-10",
+                    "name": "nestedTemplate",
+                    "type": "Microsoft.Resources/deployments",
                     "properties": {
-                      "name": "MySQLDiagSettings",
-                      "eventHubAuthorizationRuleId": "[parameters('eventHubAuthorizationRuleId')]",
-                      "logs": [
-                        {
-                          "category": "MySqlSlowLogs",
-                          "enabled": true,
-                          "retentionPolicy": {
-                            "days": 0,
-                            "enabled": false
-                          }
+                      "mode": "incremental",
+                      "templateLink": {
+                        "uri": "[concat(parameters('templateSource'),'/',replace(parameters('resourceType'), '/', '-'),'.json')]",
+                        "contentVersion": "1.0.0.0"
+                      },
+                      "parameters": {
+                        "eventHubAuthorizationRuleId": {
+                          "value": "[parameters('eventHubAuthorizationRuleId')]"
                         },
-                        {
-                          "category": "MySqlAuditLogs",
-                          "enabled": true,
-                          "retentionPolicy": {
-                            "days": 0,
-                            "enabled": false
-                          }
+                        "storageAccountId": {
+                          "value": "[parameters('storageAccountId')]"
+                        },
+                        "workspaceId": {
+                          "value": "[parameters('workspaceId')]"
+                        },
+                        "resourceName": {
+                          "value": "[parameters('resourceName')]"
                         }
-                      ],
-                      "metrics": [
-                        {
-                          "category": "AllMetrics",
-                          "enabled": true,
-                          "retentionPolicy": {
-                            "enabled": false,
-                            "days": 0
-                          }
-                        }
-                      ]
+                      }
                     }
                   }
                 ]
@@ -94,8 +143,20 @@
                 "eventHubAuthorizationRuleId": {
                   "value": "[parameters('eventHubAuthorizationRuleId')]"
                 },
-                "mysqlServerName": {
+                "storageAccountId": {
+                  "value": "[parameters('storageAccountId')]"
+                },
+                "workspaceId": {
+                  "value": "[parameters('workspaceId')]"
+                },
+                "resourceName": {
                   "value": "[field('name')]"
+                },
+                "resourceType": {
+                  "value": "[field('type')]"
+                },
+                "templateSource": {
+                  "value": "[parameters('templateSource')]"
                 }
               }
             }
