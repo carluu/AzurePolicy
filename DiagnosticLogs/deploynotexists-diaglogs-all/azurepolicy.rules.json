@@ -1,0 +1,119 @@
+{
+    "if": {
+        "field": "type",
+        "in": "[parameters('resourceTypes')]"
+    },
+    "then": {
+        "effect": "DeployIfNotExists",
+        "details": {
+            "type": "Microsoft.Insights/diagnosticSettings",
+            "roleDefinitionIds": [
+                "/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+            ],
+            "existenceCondition": {
+                "allOf": [
+                    {
+                        "field": "Microsoft.Insights/diagnosticSettings/eventHubAuthorizationRuleId",
+                        "equals": "[parameters('eventHubAuthorizationRuleId')]"
+                    },
+                    {
+                        "field": "Microsoft.Insights/diagnosticSettings/storageAccountId",
+                        "equals": "[parameters('storageAccountId')]"
+                    },
+                    {
+                        "field": "Microsoft.Insights/diagnosticSettings/workspaceId",
+                        "equals": "[parameters('workspaceId')]"
+                    },                   
+                    {
+                        "field": "Microsoft.Insights/diagnosticSettings/logs.enabled",
+                        "equals": "true"
+                    },
+                    {
+                        "field": "Microsoft.Insights/diagnosticSettings/metrics.enabled",
+                        "equals": "true"
+                    }
+                ]
+            },
+            "deployment": {
+                "properties": {
+                    "mode": "incremental",
+                    "template": {
+                        "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+                        "contentVersion": "1.0.0.0",
+                        "parameters": {
+                            "eventHubAuthorizationRuleId": {
+                                "type": "string",
+                                "defaultValue": ""
+                            },
+                            "storageAccountId": {
+                                "type": "string",
+                                "defaultValue": ""
+                            },
+                            "workspaceId": {
+                                "type": "string",
+                                "defaultValue": ""
+                            },
+                            "resourceName": {
+                                "type": "string"
+                            },
+                            "resourceType": {
+                                "type": "string"
+                            },
+                            "templateSource": {
+                                "type": "string"
+                            }
+                        },
+                        "resources": [
+                            {
+                                "apiVersion": "2017-05-10",
+                                "name": "nestedTemplate",
+                                "type": "Microsoft.Resources/deployments",
+                                "properties": {
+                                    "mode": "incremental",
+                                    "templateLink": {
+                                        "uri": "[concat(parameters('templateSource'),replace(parameters('resourceType'), '/', '-'),'.json')]",
+                                        "contentVersion": "1.0.0.0"
+                                    },
+                                    "parameters": {
+                                        "eventHubAuthorizationRuleId": {
+                                            "value": "[parameters('eventHubAuthorizationRuleId')]"
+                                        },
+                                        "storageAccountId": {
+                                            "value": "[parameters('storageAccountId')]"
+                                        },
+                                        "workspaceId": {
+                                            "value": "[parameters('workspaceId')]"
+                                        },
+                                        "resourceName": {
+                                            "value": "[parameters('resourceName')]"
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    "parameters": {
+                        "eventHubAuthorizationRuleId": {
+                            "value": "[parameters('eventHubAuthorizationRuleId')]"
+                        },
+                        "storageAccountId": {
+                            "value": "[parameters('storageAccountId')]"
+                        },
+                        "workspaceId": {
+                            "value": "[parameters('workspaceId')]"
+                        },
+                        "resourceName": {
+                            "value": "[field('name')]"
+                        },
+                        "resourceType": {
+                            "value": "[field('type')]"
+                        },
+                        "templateSource": {
+                            "value": "[parameters('templateSource')]"
+                        },
+                    }
+                }
+            }
+        }
+    }
+}

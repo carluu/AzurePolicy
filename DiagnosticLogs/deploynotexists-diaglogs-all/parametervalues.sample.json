@@ -1,0 +1,20 @@
+{
+    "eventHubAuthorizationRuleId": {
+        "value": "eventHubAuthorizationRuleId"
+    },
+    "storageAccountId": {
+        "value": "storageAccountId"
+    },
+    "workspaceId": {
+        "value": "workspaceId"
+    },    
+    "resourceTypes": {
+        "value": [
+            "Microsoft.Provider/rt1",
+            "Microsoft.Provider/rt2"
+        ]
+    },
+    "templateSource": {
+        "value": "http://templates/"
+    }   
+}
