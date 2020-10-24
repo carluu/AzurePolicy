@@ -29,6 +29,6 @@ jobs:
       - name: Manage Azure Policy
         uses: Azure/manage-azure-policy@v0
         with:
-          paths: .*.pd.json
-          assignments: .*.pa.json
+          paths: policies/**
+          #assignments: assign.*_testRG_*.json # Apply only assignment files that match this pattern
           mode: incremental
