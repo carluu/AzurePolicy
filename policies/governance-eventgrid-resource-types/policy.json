@@ -29,5 +29,8 @@
         }
     },
     "type": "Microsoft.Authorization/policyDefinitions",
-    "name": "EventGridADFTrigger"        
+    "name": "EventGridADFTrigger",
+    "id": "/providers/Microsoft.Authorization/policyDefinitions/EventGridADFTrigger",
+    "parameters": {},
+    "metadata": {}           
 }
