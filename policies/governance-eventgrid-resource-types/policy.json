@@ -12,7 +12,7 @@
                         "contains" : "Microsoft.EventGrid"
                     },
                     {
-                        "anyOf" : [
+                        "allOf" : [
                             {
                                 "field" : "type",
                                 "notContains": "Microsoft.EventGrid/systemTopics"
@@ -26,7 +26,7 @@
                 ]
             },
             "then": {
-                "effect" : "deny"
+                "effect" : "audit"
             }
         }
     },
