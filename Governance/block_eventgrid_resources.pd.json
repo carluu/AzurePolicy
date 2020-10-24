@@ -1,0 +1,25 @@
+{
+    "if": {
+        "allOf" : [
+            {
+                "field" : "type",
+                "contains" : "Microsoft.EventGrid"
+            },
+            {
+                "anyOf" : [
+                    {
+                        "field" : "type",
+                        "notContains": "Microsoft.EventGrid/systemTopics"
+                    },
+                    {
+                        "field": "type",
+                        "notContains": "Microsoft.EventGrid/eventSubscriptions"
+                    }
+                ]
+            }
+        ]
+    },
+    "then": {
+        "effect" : "deny"
+    }
+}
