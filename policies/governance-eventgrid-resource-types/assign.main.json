@@ -1,0 +1,14 @@
+{
+    "properties": {
+     "displayName": "Event Grid - Only ADF Trigger Support",
+     "policyDefinitionId": "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/policyDefinitions/EventGridADFTrigger",
+     "scope": "/subscriptions/00000000-0000-0000-0000-000000000000",
+     "notScopes": [],
+     "parameters": {},
+     "metadata": {},
+     "enforcementMode": "Default"
+    },
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/policyAssignments/EventGridADFTrigger",
+    "type": "Microsoft.Authorization/policyAssignments",
+    "name": "EventGridADFTrigger"
+   }
