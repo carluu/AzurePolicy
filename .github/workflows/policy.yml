@@ -28,7 +28,6 @@ jobs:
         with:
           find: "00000000-0000-0000-0000-000000000000"
           replace: ${{ secrets.AZURE_CREDENTIALS }}
-          include: ".**"
 
       - uses: azure/login@v1
         with:
