@@ -23,14 +23,14 @@
             "roleId": {
                 "type": "string",
                 "metadata": {
-                    "description": "The resource ID of the role assignment",
+                    "description": "The resource ID of the role ",
                     "displayName": "Role ID"
                 }
             }
         },
         "metadata": {},
         "displayName": "Role Assignments - Check Type Against Desired State",
-        "description" : "This is used for a case where there is a rule that a certain level of access whould only be granted to certain user types. For example, Owners can only be SP accounts to prevent direct user assignment of Owners",
+        "description" : "This is used for a case where there is a rule that a certain level of access whould only be granted to certain user types. For example, Owners can only be SP accounts to prevent direct user assignment of Owners. Essentially the policy says all assignments of X role can only be to user type Y",
         "policyType": "Custom",
         "mode" : "All",
         "policyRule": {
