@@ -1,32 +1,6 @@
 {
     "properties": {
         "parameters": {
-            "principalType": {
-                "type": "string",
-                "metadata": {
-                    "description": "The type of assignment to check for",
-                    "displayName": "Principal Type"
-                },
-                "allowedValues": [
-                    "User", 
-                    "Group", 
-                    "ServicePrincipal", 
-                    "Unknown", 
-                    "DirectoryRoleTemplate", 
-                    "ForeignGroup", 
-                    "Application", 
-                    "MSI", 
-                    "DirectoryObjectOrGroup", 
-                    "Everyone"
-                ]
-            },
-            "roleId": {
-                "type": "string",
-                "metadata": {
-                    "description": "The resource ID of the role assignment",
-                    "displayName": "Role ID"
-                }
-            }
         },
         "metadata": {},
         "displayName": "Role Assignments - Check Type Against Desired State",
@@ -38,14 +12,6 @@
                     {
                         "field" : "type",
                         "equals" : "Microsoft.Authorization/roleAssignments"
-                    },
-                    {
-                        "field" : "Microsoft.Authorization/roleAssignments/roleDefinitionId",
-                        "equals": "[parameters('roleId')]"
-                    },
-                    {
-                        "field" : "Microsoft.Authorization/roleAssignments/principalType",
-                        "notEquals": "[parameters('principalType')]"
                     }
                 ]
             },
