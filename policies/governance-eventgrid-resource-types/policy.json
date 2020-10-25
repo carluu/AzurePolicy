@@ -4,6 +4,7 @@
         "metadata": {},
         "displayName": "Event Grid - Only ADF Trigger Support",
         "policyType": "Custom",
+        "mode" : "All",
         "policyRule": {
             "if": {
                 "allOf" : [
