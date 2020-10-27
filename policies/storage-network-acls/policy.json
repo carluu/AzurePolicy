@@ -30,7 +30,7 @@
                     ],
                     "operations": [
                         {
-                            "operation": "add",
+                            "operation": "addOrReplace",
                             "field": "Microsoft.Storage/storageAccounts/networkAcls.ipRules[*]",
                             "value": {
                                 "action": "Allow",
@@ -38,7 +38,7 @@
                             }
                         },
                         {
-                            "operation": "add",
+                            "operation": "addOrReplace",
                             "field": "Microsoft.Storage/storageAccounts/networkAcls.ipRules[*]",
                             "value": {
                                 "action": "Allow",
