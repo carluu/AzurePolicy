@@ -11,14 +11,6 @@
                     {
                         "field" : "type",
                         "contains" : "Microsoft.Storage/storageAccounts"
-                    },
-                    {
-                        "allOf" : [
-                            {
-                                "field" : "Microsoft.Storage/storageAccounts/networkAcls.ipRules",
-                                "exists": "true"
-                            }
-                        ]
                     }
                 ]
             },
@@ -31,19 +23,8 @@
                     "operations": [
                         {
                             "operation": "addOrReplace",
-                            "field": "Microsoft.Storage/storageAccounts/networkAcls.ipRules[*]",
-                            "value": {
-                                "action": "Allow",
-                                "value": "134.5.0.0/21"
-                            }
-                        },
-                        {
-                            "operation": "addOrReplace",
-                            "field": "Microsoft.Storage/storageAccounts/networkAcls.ipRules[*]",
-                            "value": {
-                                "action": "Allow",
-                                "value": "135.5.0.0/21"
-                            }
+                            "field": "Microsoft.Storage/storageAccounts/networkAcls.ipRules",
+                            "value": "[union(field('Microsoft.Storage/storageAccounts/networkAcls.ipRules'), parameters('secondObject'))]"
                         }
                     ]
                 }
