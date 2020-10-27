@@ -23,19 +23,24 @@
                 ]
             },
             "then": {
-                "effect": "append",
-                "details": [{
-                    "field": "Microsoft.Storage/storageAccounts/networkAcls.ipRules[*]",
-                    "value": [{
-                        "action": "Allow",
-                        "value": "134.5.0.0/21"
-                    },
-                    {
-                        "action": "Allow",
-                        "value": "135.5.0.0/21"
-                    }]
+                "effect": "modify",
+                "details": {
+                    "roleDefinitionIds": [
+                        "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+                    ],
+                    "operations": [
+                        {
+                            "operation": "add",
+                            "field": "Microsoft.Storage/storageAccounts/networkAcls.ipRules[*]",
+                            "value": "134.5.0.0/21"
+                        },
+                        {
+                            "operation": "add",
+                            "field": "Microsoft.Storage/storageAccounts/networkAcls.ipRules[*]",
+                            "value": "135.5.0.0/21"
+                        }
+                    ]
                 }
-                ]
             }
         }
     },
