@@ -1,6 +1,16 @@
 {
     "properties": {
-        "parameters": {},
+        "parameters": {
+            "ipRules": {
+                "type": "array",
+                "defaultValue": "['192.168.0.1']",
+                "allowedValues": [],
+                "metadata": {
+                    "displayName": "Effect",
+                    "description": "The effect determines what happens when the policy rule is evaluated to match"
+                }
+            }
+        },
         "metadata": {},
         "displayName": "Storage - Check Network ACLs",
         "policyType": "Custom",
@@ -20,7 +30,7 @@
                             },
                             {
                                 "field": "Microsoft.Storage/storageAccounts/networkAcls.ipRules[*].value",
-                                "notIn": "['192.168.0.1']"
+                                "notIn": "[parameters('roleId')]"
                             }
                         ]
                     }
