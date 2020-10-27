@@ -13,5 +13,6 @@
     "name": "StorageCheckACLs",
     "identity": {
         "type": "SystemAssigned"
-      }
+      },
+    "location": "eastus"
    }
