@@ -3,7 +3,7 @@
         "parameters": {
             "ipRules": {
                 "type": "array",
-                "defaultValue": "['192.168.0.1']",
+                "defaultValue": ["192.168.0.1"],
                 "allowedValues": [],
                 "metadata": {
                     "displayName": "Effect",
@@ -30,7 +30,7 @@
                             },
                             {
                                 "field": "Microsoft.Storage/storageAccounts/networkAcls.ipRules[*].value",
-                                "notIn": "[parameters('roleId')]"
+                                "notIn": "[parameters('ipRules')]"
                             }
                         ]
                     }
