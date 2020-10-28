@@ -12,8 +12,8 @@
                     }, 
                     {
                         "value": "40.40.40.42/32"
-                        }
-                    ]
+                    }
+                ]
             }
         },
         "metadata": { },
@@ -39,7 +39,7 @@
                         {
                             "operation": "addOrReplace",
                             "field": "Microsoft.Storage/storageAccounts/networkAcls.ipRules",
-                            "value": "[createArray(replace(concat(string(field('Microsoft.Storage/storageAccounts/networkAcls.ipRules')), string(parameters('mandatoryList'))),'\\',''))]"
+                            "value": "[union(field('Microsoft.Storage/storageAccounts/networkAcls.ipRules')), string(parameters('mandatoryList'))]"
                         }
                     ]
                 }
