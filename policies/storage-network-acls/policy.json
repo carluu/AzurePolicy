@@ -29,7 +29,7 @@
                         {
                             "operation": "addOrReplace",
                             "field": "Microsoft.Storage/storageAccounts/networkAcls.ipRules",
-                            "value": "[concat(string(field('Microsoft.Storage/storageAccounts/networkAcls.ipRules')), string(parameters('mandatoryList')))]"
+                            "value": "[concat(string(field('Microsoft.Storage/storageAccounts/networkAcls.ipRules')), string('test'))]"
                         }
                     ]
                 }
