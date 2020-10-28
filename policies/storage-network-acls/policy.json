@@ -1,9 +1,6 @@
 {
     "properties": {
         "parameters": {
-            "mandatoryList": {
-                "type": "array"
-            }
         },
         "metadata": { },
         "displayName": "Storage - Check Network ACLs",
