@@ -3,7 +3,7 @@
         "parameters": {
             "mandatoryList": {
                 "type": "array",
-                "defaultValue": ["40.40.40.40", "50.50.50.50", "60.60.60.60"]
+                "defaultValue": ["{\"value\": \"40.40.40.40/32\"}", "50.50.50.50", "60.60.60.60"]
             }
         },
         "metadata": {},
@@ -29,7 +29,7 @@
                         {
                             "operation": "addOrReplace",
                             "field": "Microsoft.Storage/storageAccounts/networkAcls.ipRules",
-                            "value": "[union(field('Microsoft.Storage/storageAccounts/networkAcls.ipRules'), parameters('mandatoryList'))]"
+                            "value": "[union(field('Microsoft.Storage/storageAccounts/networkAcls.ipRules'), createArray(parameters('mandatoryList')))]"
                         }
                     ]
                 }
