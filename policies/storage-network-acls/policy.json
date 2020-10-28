@@ -39,7 +39,7 @@
                         {
                             "operation": "addOrReplace",
                             "field": "Microsoft.Storage/storageAccounts/networkAcls.ipRules",
-                            "value": "[union(field('Microsoft.Storage/storageAccounts/networkAcls.ipRules')), string(parameters('mandatoryList'))]"
+                            "value": "[union(field('Microsoft.Storage/storageAccounts/networkAcls.ipRules'), string(parameters('mandatoryList')))]"
                         }
                     ]
                 }
