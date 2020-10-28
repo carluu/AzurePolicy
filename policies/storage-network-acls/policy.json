@@ -23,14 +23,14 @@
                     ],
                     "operations": [
                         {
-                            "operation": "add",
+                            "operation": "addorReplace",
                             "field": "Microsoft.Storage/storageAccounts/networkAcls.ipRules[*]",
                             "value": {
                                 "value": "134.5.0.0/21"
                             }
                         },
                         {
-                            "operation": "add",
+                            "operation": "addOrReplace",
                             "field": "Microsoft.Storage/storageAccounts/networkAcls.ipRules[*]",
                             "value": {
                                 "value": "135.5.0.1/21"
