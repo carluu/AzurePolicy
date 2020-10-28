@@ -30,11 +30,20 @@
                 ]
             },
             "then": {
-                "effect": "append",
-                "details": [{
-                    "field": "Microsoft.Storage/storageAccounts/networkAcls.ipRules[*]",
-                    "value": "[parameters('mandatoryList')]"
-            }           
+                "effect": "modify",
+                "details": {
+                    "roleDefinitionIds": [
+                        "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+                    ],
+                    "operations": [
+                        {
+                            "operation": "addOrReplace",
+                            "field": "Microsoft.Storage/storageAccounts/networkAcls.ipRules",
+                            "value": "[union(field('Microsoft.Storage/storageAccounts/networkAcls.ipRules'), createArray(parameters('mandatoryList')))]"
+                        }
+                    ]
+                }
+            }            
         }
     },
     "type": "Microsoft.Authorization/policyDefinitions",
