@@ -3,7 +3,17 @@
         "parameters": {
             "mandatoryList": {
                 "type": "array",
-                "defaultValue": ["{\"value\": \"40.40.40.40/32\"}", "{\"value\": \"40.40.40.41/32\"}", "{\"value\": \"40.40.40.42/32\"}"]
+                "defaultValue": [
+                    {
+                        "value": "40.40.40.40/32"
+                    }, 
+                    {
+                        "value": "40.40.40.41/32"
+                    }, 
+                    {
+                        "value": "40.40.40.42/32"
+                        }
+                    ]
             }
         },
         "metadata": { },
