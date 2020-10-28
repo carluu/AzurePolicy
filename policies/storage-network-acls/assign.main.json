@@ -5,7 +5,8 @@
      "scope": "/subscriptions/00000000-0000-0000-0000-000000000000",
      "notScopes": [],
      "parameters": {        
-        "mandatoryList": [   {
+        "mandatoryList": [   
+        {
             "value": "40.40.40.40/32"
         }, 
         {
@@ -13,7 +14,8 @@
         }, 
         {
             "value": "40.40.40.42/32"
-        }]
+        }
+    ]
     },
      "metadata": {},
      "enforcementMode": "Default"
