@@ -3,7 +3,20 @@
         "parameters": {
             "mandatoryList": {
                 "type": "array",
-                "defaultValue": ["40.40.40.40", "50.50.50.50", "60.60.60.60"]
+                "defaultValue": [
+                    {
+                        "action": "Allow",
+                        "value": "40.40.40.40/32"
+                    }, 
+                    {
+                        "action": "Allow",
+                        "value": "50.50.50.50/32"
+                    }, 
+                    {
+                        "action": "Allow",
+                        "value": "60.60.60.60/32"
+                    }
+                ]
             }
         },
         "metadata": {},
