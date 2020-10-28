@@ -1,6 +1,21 @@
 {
     "properties": {
-        "parameters": {},
+        "parameters": {
+            "mandatoryList": {
+                "type": "array",
+                "defaultValue": [
+                    {
+                        "value": "40.40.40.40/32"
+                    }, 
+                    {
+                        "value": "40.40.40.41/32"
+                    }, 
+                    {
+                        "value": "40.40.40.42/32"
+                    }
+                ]
+            }
+        },
         "metadata": { },
         "displayName": "Storage - Check Network ACLs",
         "policyType": "Custom",
@@ -24,7 +39,7 @@
                         {
                             "operation": "addOrReplace",
                             "field": "Microsoft.Storage/storageAccounts/networkAcls.ipRules",
-                            "value": "[union(field('Microsoft.Storage/storageAccounts/networkAcls.ipRules'), createArray())]"
+                            "value": "[union(field('Microsoft.Storage/storageAccounts/networkAcls.ipRules'), array(parameters('mandatoryList')))]"
                         }
                     ]
                 }
