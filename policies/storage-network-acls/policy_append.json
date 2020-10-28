@@ -22,7 +22,10 @@
                 "effect": "append",
                 "details": [{
                     "field": "Microsoft.Storage/storageAccounts/networkAcls.ipRules[*]",
-                    "value": "[parameters('mandatoryList')]"
+                    "value": [{
+                        "action": "Allow",
+                        "value": "134.5.0.0/21"
+                    }]
                 
                 }]           
          }
