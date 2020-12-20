@@ -1,6 +1,14 @@
 {
     "properties": {
-        "parameters": {},
+        "parameters": {
+            "adfAllowedGitHubHost": {
+                "type": "string",
+                "metadata": {
+                    "description": "The allowed GitHub host",
+                    "displayName": "GitHub Host"
+                }
+            }
+        },
         "metadata": {},
         "displayName": "Data Factory - Check Git Repo config",
         "policyType": "Custom",
@@ -20,7 +28,7 @@
                             },
                             {
                                 "field" : "Microsoft.DataFactory/factories/repoConfiguration.FactoryGitHubConfiguration.hostName",
-                                "notEquals": "https://testrepo"
+                                "notEquals": "[parameters('adfAllowedGitHubHost')]"
                             }
                         ]
                     }
