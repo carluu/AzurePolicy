@@ -33,5 +33,5 @@
     },
     "type": "Microsoft.Authorization/policyDefinitions",
     "name": "EventGridADFTrigger",
-    "id": "/subscriptions/00000000-0000-0000-0000-000000000001/providers/Microsoft.Authorization/policyDefinitions/EventGridADFTrigger"           
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/policyDefinitions/EventGridADFTrigger"           
 }
