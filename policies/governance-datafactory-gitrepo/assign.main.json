@@ -1,0 +1,21 @@
+{
+    "properties": {
+     "displayName": "Data Factory - Check Git Repo config",
+     "policyDefinitionId": "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/policyDefinitions/DataFactoryGitConfig",
+     "scope": "/subscriptions/00000000-0000-0000-0000-000000000000",
+     "notScopes": [],
+     "parameters": {
+        "principalType": {
+            "value": "ServicePrincipal"
+        },
+        "roleId": {
+            "value": "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+        }
+     },
+     "metadata": {},
+     "enforcementMode": "Default"
+    },
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/policyAssignments/DataFactoryGitConfig",
+    "type": "Microsoft.Authorization/policyAssignments",
+    "name": "DataFactoryGitConfig"
+   }
