@@ -2,7 +2,7 @@
     "properties": {
         "parameters": {
             "adfAllowedGitHubHost": {
-                "type": "string",
+                "type": "String",
                 "metadata": {
                     "description": "The allowed GitHub host",
                     "displayName": "GitHub Host"
