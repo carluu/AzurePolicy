@@ -20,16 +20,19 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Checkout
+        uses: actions/checkout@v2 
+
       - name: Find and Replace
         uses: jacobtomlinson/gha-find-replace@master
         with:
-          find: "00000000-0000-0000-0000-000000000001"
+          find: "00000000-0000-0000-0000-000000000000"
           replace: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-
-      - uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Manage Azure Policy
         uses: Azure/manage-azure-policy@v0
