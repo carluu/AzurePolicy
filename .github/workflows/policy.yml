@@ -20,15 +20,12 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@master
       - name: Find and Replace
-        uses: jacobtomlinson/gha-find-replace@master
+        uses: bejoistic/str-replace@master
         with:
           find: "00000000-0000-0000-0000-000000000000"
           replace: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          include: "*.json"
 
       - uses: azure/login@v1
         with:
