@@ -32,5 +32,6 @@
         }
     },
     "type": "Microsoft.Authorization/policyDefinitions",
-    "name": "DataFactoryGitConfig"          
+    "name": "DataFactoryGitConfig",
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/policyDefinitions/DataFactoryGitConfig"           
 }

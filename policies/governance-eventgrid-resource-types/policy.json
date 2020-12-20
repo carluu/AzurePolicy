@@ -20,7 +20,7 @@
                             },
                             {
                                 "field": "type",
-                                "notContains": "Microsoft.EventGrid/eventSubscriptions"
+                                "notContains": "Microsoft.EventGrid/eventSubscriptionss"
                             }
                         ]
                     }
