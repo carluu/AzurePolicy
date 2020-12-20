@@ -17,7 +17,7 @@
                             {
                                 "field" : "Microsoft.DataFactory/factories/repoConfiguration",
                                 "exists" : "true"
-                            }
+                            },
                             {
                                 "field" : "Microsoft.DataFactory/factories/repoConfiguration.FactoryGitHubConfiguration.hostName",
                                 "notEquals": "https://testrepo"
