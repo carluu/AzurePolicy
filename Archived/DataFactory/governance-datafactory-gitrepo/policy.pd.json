@@ -1,0 +1,45 @@
+{
+    "properties": {
+        "parameters": {
+            "adfAllowedGitHubHost": {
+                "type": "String",
+                "metadata": {
+                    "description": "The allowed GitHub host",
+                    "displayName": "GitHub Host"
+                }
+            }
+        },
+        "metadata": {},
+        "displayName": "Data Factory - Check Git Repo config",
+        "policyType": "Custom",
+        "mode" : "Indexed",
+        "policyRule": {
+            "if": {
+                "allOf" : [
+                    {
+                        "field" : "type",
+                        "equals" : "Microsoft.DataFactory/factories"
+                    },
+                    {
+                        "allOf" : [
+                            {
+                                "field" : "Microsoft.DataFactory/factories/repoConfiguration",
+                                "exists" : "true"
+                            },
+                            {
+                                "field" : "Microsoft.DataFactory/factories/repoConfiguration.FactoryGitHubConfiguration.hostName",
+                                "notEquals": "[parameters('adfAllowedGitHubHost')]"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "then": {
+                "effect" : "deny"
+            }
+        }
+    },
+    "type": "Microsoft.Authorization/policyDefinitions",
+    "name": "DataFactoryGitConfig",
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/policyDefinitions/DataFactoryGitConfig"           
+}

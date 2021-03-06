@@ -1,0 +1,21 @@
+{
+    "properties": {
+     "displayName": "Role Assignments - Check Type Against Desired State",
+     "policyDefinitionId": "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/policyDefinitions/RoleAssignmentTypeValidation",
+     "scope": "/subscriptions/00000000-0000-0000-0000-000000000000",
+     "notScopes": [],
+     "parameters": {
+        "principalType": {
+            "value": "ServicePrincipal"
+        },
+        "roleId": {
+            "value": "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+        }
+     },
+     "metadata": {},
+     "enforcementMode": "Default"
+    },
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/policyAssignments/RoleAssignmentTypeValidation",
+    "type": "Microsoft.Authorization/policyAssignments",
+    "name": "RoleAssignmentTypeValidation"
+   }

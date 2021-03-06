@@ -1,0 +1,37 @@
+{
+    "properties": {
+        "parameters": {},
+        "metadata": {},
+        "displayName": "Event Grid - Only ADF Trigger Support",
+        "policyType": "Custom",
+        "mode" : "All",
+        "policyRule": {
+            "if": {
+                "allOf" : [
+                    {
+                        "field" : "type",
+                        "contains" : "Microsoft.EventGrid"
+                    },
+                    {
+                        "allOf" : [
+                            {
+                                "field" : "type",
+                                "notContains": "Microsoft.EventGrid/systemTopics"
+                            },
+                            {
+                                "field": "type",
+                                "notContains": "Microsoft.EventGrid/eventSubscriptionss"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "then": {
+                "effect" : "deny"
+            }
+        }
+    },
+    "type": "Microsoft.Authorization/policyDefinitions",
+    "name": "EventGridADFTrigger",
+    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/policyDefinitions/EventGridADFTrigger"           
+}
