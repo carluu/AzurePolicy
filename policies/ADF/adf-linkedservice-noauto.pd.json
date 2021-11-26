@@ -1,0 +1,19 @@
+{
+    "policyRule": {
+        "if": {
+            "allOf" : [
+                {
+                    "field" : "type",
+                    "equals" : "Microsoft.DataFactory/factories/linkedServices"
+                },
+                {
+                    "field" : "Microsoft.DataFactory/factories/linkedservices/connectVia",
+                    "exists" : "false"
+                }
+            ]
+        },
+        "then": {
+            "effect" : "deny"
+        }
+    }
+}

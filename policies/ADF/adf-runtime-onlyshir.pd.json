@@ -1,0 +1,19 @@
+{
+    "policyRule": {
+        "if": {
+            "allOf" : [
+                {
+                    "field" : "type",
+                    "equals" : "Microsoft.DataFactory/factories/integrationRuntimes"
+                },
+                {
+                    "field" : "Microsoft.DataFactory/factories/integrationRuntimes/type",
+                    "notEquals" : "SelfHosted"
+                }
+            ]
+        },
+        "then": {
+            "effect" : "deny"
+        }
+    }
+}
