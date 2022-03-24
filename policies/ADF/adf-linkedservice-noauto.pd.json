@@ -9,6 +9,10 @@
                 {
                     "field" : "Microsoft.DataFactory/factories/linkedservices/connectVia",
                     "exists" : "false"
+                },
+                {
+                    "field": "Microsoft.DataFactory/factories/linkedservices/type",
+                    "notEquals": "AzureKeyVault"
                 }
             ]
         },
